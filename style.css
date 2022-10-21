@@ -46,3 +46,14 @@ body {
 
     align-items: center;
 }
+
+#secondsLeft{
+    position: fixed;
+    bottom:150px;
+    left:150px;
+    padding:25px;
+    border: 2px solid black;
+    border-radius: 50%;
+    font-family: "Roboto Mono", "Dank Mono", monospace;
+    font-size:24px;
+}
