@@ -6,7 +6,7 @@ body {
     margin-left:auto;
 }
 
-.btn{
+#buttonStart{
         padding:10px;
         border-radius: 20px;
         background-color: white;

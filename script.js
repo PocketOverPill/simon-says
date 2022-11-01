@@ -1,9 +1,23 @@
 console.log("OIS");
 
-var green = document.getElementById("green");
-var red = document.getElementById("red");
-var blue = document.getElementById("blue");
-var yellow = document.getElementById("yellow");
+//Declaração objetos do jogo (triângulos de cada cor)
+var gameObjects = [{
+    "color": "green",
+    "element": document.getElementById("green")
+    },
+    {
+    "color": "red",
+    "element": document.getElementById("red")
+    },
+    {
+    "color": "blue",
+    "element": document.getElementById("blue")
+    },
+    {
+    "color": "yellow",
+    "element": document.getElementById("yellow")},
+];
+//Declaração de variáveis globais;
 
 var atual;
 var arrayResposta = [];
@@ -11,57 +25,85 @@ var arrayPlayer = [];
 var start = false;
 var timeOut = 15;
 var secondsLeft = document.getElementById("secondsLeft");
+var timerOn = false;
+var timer = {};
 
-var funcoesJogo = function escolheCor(){
+var botao = document.getElementById("buttonStart");
+
+
+function pisca(object){
+    object.element.style.backgroundColor = "white";
+    setTimeout(() => { object.element.style.backgroundColor = object.color; }, 300);
+}
+
+//Função escolher cor aleatória e pushar o resultado em número para uma arrayResposta
+
+function escolheCor(){
     var random = Math.floor(Math.random()*4)
     switch (random) {
         case 0:
-            atual = green;
-            atual.style.backgroundColor = "white";
-            setTimeout(() => { atual.style.backgroundColor = "green"; }, 300);
+            pisca(gameObjects[0])
             arrayResposta.push(random);
             break;
         case 1:
-            atual = red;
-            atual.style.backgroundColor = "white";
-            setTimeout(() => { atual.style.backgroundColor = "red"; }, 300);
+            pisca(gameObjects[1])
             arrayResposta.push(random);
             break;
         case 2:
-            atual = blue;
-            atual.style.backgroundColor = "white";
-            setTimeout(() => { atual.style.backgroundColor = "blue"; }, 300);
+            pisca(gameObjects[2])
             arrayResposta.push(random);
             break;
         case 3:
-            atual = yellow;
-            atual.style.backgroundColor = "white";
-            setTimeout(() => { atual.style.backgroundColor = "yellow"; }, 300);
+            pisca(gameObjects[3])
             arrayResposta.push(random);
             break;      
         default:
             break;    }
 
-            atual.style.backgroundColor = "white";
+
+}
+//TODO implementar sequência que printa a arrayResposta depois escolheCor() 
+
+function sequenciaMatriz(array){
+    if(array.length == 0){
+    console.log("array vazia");
+    }else{
+        array.forEach(element => {
+                    
+        });
+    }
+}
+//Função principal começar jogo (botão)
+
+botao.addEventListener("click", startGame);
+
+function startGame(){
+
+    escolheCor();
+    
+    if(timerOn == true){
+
+    }else{
+    timer = setInterval(segundos,1000);
+    timerOn = true;
+    }
+   
+
 }
 
-while (start) {
-    setTimeout(funcaoJogo, 300);
-    setInterval(segundos(),1000)
-}
 
 
-var timer = setInterval(segundos,1000);
-console.log(timeOut-1);
+
+// Função para timer
 
 function segundos(){
 if (timeOut == 0) {
-    console.log(timeOut)
     secondsLeft.innerHTML = "15";
-    clearInterval(timer);
+
     secondsLeft.style.color = "black"
     secondsLeft.style.borderColor = "black"
-    
+    clearInterval(timer);
+    timerOn = false;
 
     
 }else if(timeOut < 7){
